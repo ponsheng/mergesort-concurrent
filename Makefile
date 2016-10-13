@@ -1,3 +1,4 @@
+SHELL := /bin/bash
 CC = gcc
 CFLAGS = -std=gnu99 -Wall -g -pthread
 OBJS = list.o threadpool.o main.o
@@ -18,6 +19,13 @@ deps := $(OBJS:%.o=.%.o.d)
 
 sort: $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $(OBJS) -rdynamic
+
+
+SORTED = dic/words_test.txt
+RESULT = dic/random_test.txt
+
+result_check:
+	diff $(SORTED)  <(sort $(RESULT) )
 
 clean:
 	rm -f $(OBJS) sort
