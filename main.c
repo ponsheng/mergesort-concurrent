@@ -84,7 +84,8 @@ void merge(void *data)
         task_t *_task = (task_t *) malloc(sizeof(task_t));
         _task->func = NULL;
         tqueue_push(pool->queue, _task);
-        list_print(_list);
+        //list_print(_list);
+        printf("sort finished");
     }
 }
 
@@ -157,6 +158,8 @@ int main(int argc, char const *argv[])
     /* FIXME: remove all all occurrences of printf and scanf
      * in favor of automated test flow.
      */
+
+
     printf("input unsorted data line-by-line\n");
     for (int i = 0; i < data_count; ++i) {
         long int data;

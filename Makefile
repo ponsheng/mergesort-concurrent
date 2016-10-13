@@ -21,11 +21,19 @@ sort: $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $(OBJS) -rdynamic
 
 
-SORTED = dic/words_test.txt
-RESULT = dic/random_test.txt
+UNSORTED = dic/random_test.txt
+RESULT = dic/result.txt
+
+RAN_NUM = 350000
+
+random: sort
+	(for i in {1..$(RAN_NUM)}; do echo $$RANDOM; done) | ./sort 4 $(RAN_NUM)
+
+mutrace: sort
+	(for i in {1..$(RAN_NUM)}; do echo $$RANDOM; done) | mutrace ./sort 4 $(RAN_NUM)
 
 result_check:
-	diff $(SORTED)  <(sort $(RESULT) )
+	diff $(RESULT)  <(sort $(UNSORTED) )
 
 clean:
 	rm -f $(OBJS) sort
